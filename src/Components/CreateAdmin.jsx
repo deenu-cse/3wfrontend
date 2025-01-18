@@ -19,7 +19,7 @@ export default function createAdmin() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:3000/adminCreate", {
+            const response = await fetch("https://3wbackend-eight.vercel.app/adminCreate", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

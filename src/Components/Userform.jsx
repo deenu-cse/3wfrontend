@@ -32,7 +32,7 @@ export default function Userform() {
         Array.from(formData.images).forEach((image) => data.append("images", image));
 
         try {
-            const response = await axios.post("http://localhost:3000/userForm", data, {
+            const response = await axios.post("https://3wbackend-eight.vercel.app/userForm", data, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             alert("Form submitted successfully");

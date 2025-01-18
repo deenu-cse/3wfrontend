@@ -19,7 +19,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:3000/getUsers'); 
+                const response = await fetch('https://3wbackend-eight.vercel.app/getUsers'); 
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }

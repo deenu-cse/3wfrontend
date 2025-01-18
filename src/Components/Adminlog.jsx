@@ -18,7 +18,7 @@ export default function Adminlog() {
         e.preventDefault();
         try {
             // Use POST method instead of GET
-            const response = await fetch("http://localhost:3000/adminLog", {
+            const response = await fetch("https://3wbackend-eight.vercel.app/adminLog", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
