@@ -49,7 +49,7 @@ body {
 }
 
 .sidebar.closed {
-    margin-left: -23%;
+    margin-left: -20%;
 }
 
 .sidebar h2 {
@@ -88,7 +88,6 @@ body {
     color: #bdc3c7;
 }
 
-/* Main Content Styling */
 .main-content {
     padding: 20px;
     overflow-y: auto;
@@ -136,7 +135,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Placeholder Content Styling */
 .placeholder {
     text-align: center;
     color: #bdc3c7;

@@ -6,6 +6,7 @@ export default function Dashboard() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [active, setActive] = useState(true);
+    const [loading, setLoading] = useState(true);  // Added loading state
 
     const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('https://3wbackend-eight.vercel.app/getUsers'); 
+                const response = await fetch('https://3wbackend-eight.vercel.app/getUsers');
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
@@ -27,6 +28,8 @@ export default function Dashboard() {
                 setUsers(data);
             } catch (error) {
                 console.error("Error fetching users:", error);
+            } finally {
+                setLoading(false);  // Set loading to false once data is fetched
             }
         };
         fetchUsers();
@@ -66,22 +69,37 @@ export default function Dashboard() {
                 </ul>
             </div>
             <div className="main-content">
-                {selectedUser ? (
-                    <>
-                        <h2>{selectedUser.name}</h2>
-                        <p>@{selectedUser.socialMediaHandle}</p>
-                        <div className="image-gallery">
-                            {selectedUser.images.map((image, index) => (
-                                <div key={index} className="image-container">
-                                    <img src={image} alt={`User submission ${index + 1}`} />
-                                </div>
-                            ))}
-                        </div>
-                    </>
-                ) : (
-                    <div className="placeholder">
-                        <h2>Select a user to view their submissions</h2>
+                {loading ? (  // Show loading spinner until data is fetched
+                    <div id="container">
+                        <div className="divider" aria-hidden="true"></div>
+                        <p className="loading-text" aria-label="Loading">
+                            <span className="letter" aria-hidden="true">L</span>
+                            <span className="letter" aria-hidden="true">o</span>
+                            <span className="letter" aria-hidden="true">a</span>
+                            <span className="letter" aria-hidden="true">d</span>
+                            <span className="letter" aria-hidden="true">i</span>
+                            <span className="letter" aria-hidden="true">n</span>
+                            <span className="letter" aria-hidden="true">g</span>
+                        </p>
                     </div>
+                ) : (
+                    selectedUser ? (
+                        <>
+                            <h2>{selectedUser.name}</h2>
+                            <p>@{selectedUser.socialMediaHandle}</p>
+                            <div className="image-gallery">
+                                {selectedUser.images.map((image, index) => (
+                                    <div key={index} className="image-container">
+                                        <img src={image} alt={`User submission ${index + 1}`} />
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <div className="placeholder">
+                            <h2>Select a user to view their submissions</h2>
+                        </div>
+                    )
                 )}
             </div>
         </div>
